@@ -82,4 +82,25 @@ function playRound (playerSelection) {
     else {
         console.log(`You tie, ${computerSelection} ties with ${playerSelection}`)
     }
+    return result;
+}
+
+function game () {
+    let computerScore = 0;
+    let playerScore = 0;
+    for (let i = 0; i < 5; i++) {
+        let playerSelection = prompt('Enter your pick:');
+        let result = playRound(playerSelection)
+        if (result === 'Win') {
+            playerScore++
+        }
+        else if (result === 'Lose') {
+            computerScore++
+        }
+        else {
+            playerScore++
+            computerScore++
+        }
+    }
+    console.log(`The score is ${playerScore}:${computerScore}.`)
 }
