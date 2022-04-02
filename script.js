@@ -14,3 +14,26 @@ function computerPlay () {
     }
     return move;
 }
+
+function playRound (playerSelection) {
+    let computerSelection = computerPlay();
+    let result;
+    if (playerSelection === undefined) {
+        throw new ReferenceError('playerSelection is not defined');
+    }
+    playerSelection = playerSelection.toLowerCase();
+    switch (true) {
+        case (playerSelection === 'rock'): {
+            
+        }
+        case (playerSelection === 'paper'): {
+
+        }
+        case (playerSelection === 'scissors'): {
+
+        }
+        default: {
+            throw new ReferenceError('playerSelection is not a valid argument');
+        }
+    }
+}
