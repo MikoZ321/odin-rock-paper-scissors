@@ -1,7 +1,7 @@
 const random = n => Math.floor(Math.random() * n)
 
 function computerPlay () {
-    let n = random(3)
+    let n = random(3);
     let move;
     if (n === 0) {
         move = "rock";
@@ -70,37 +70,49 @@ function getOutcome (playerSelection, computerSelection) {
     }
 }
 
+const container = document.querySelector('.container');
+
+const resultDiv = document.createElement('result');
+resultDiv.classList.add("result");
+
 function playRound (playerSelection) {
     let computerSelection = computerPlay();
     let result = getOutcome(playerSelection, computerSelection);
     if (result === 'Win') {
-        console.log(`You win, ${playerSelection} beats ${computerSelection}!`);
+        resultDiv.textContent = `You win, ${playerSelection} beats ${computerSelection}!`;
     }
     else if (result === 'Lose') {
-        console.log(`You lose, ${computerSelection} beats ${playerSelection}.`)
+        resultDiv.textContent = `You lose, ${computerSelection} beats ${playerSelection}.`;
     }
     else {
-        console.log(`You tie, ${computerSelection} ties with ${playerSelection}`)
+        resultDiv.textContent = `You tie, ${computerSelection} ties with ${playerSelection}`;
     }
     return result;
 }
 
-function game () {
+container.appendChild(resultDiv);
+
+/* function game () {
     let computerScore = 0;
     let playerScore = 0;
     for (let i = 0; i < 5; i++) {
-        let playerSelection = prompt('Enter your pick:');
-        let result = playRound(playerSelection)
+        let result = playRound(playerSelection);
         if (result === 'Win') {
-            playerScore++
+            playerScore++;
         }
         else if (result === 'Lose') {
-            computerScore++
+            computerScore++;
         }
         else {
-            playerScore++
-            computerScore++
+            playerScore++;
+            computerScore++;
         }
     }
-    console.log(`The score is ${playerScore}:${computerScore}.`)
-}
+    console.log(`The score is ${playerScore}:${computerScore}.`);
+} */
+
+const btns = document.querySelectorAll('.btn');
+
+btns.forEach(btn => btn.addEventListener('click', function (e) {
+    playRound(e.target.id);
+}));
