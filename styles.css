@@ -23,3 +23,11 @@
     font-size: 2rem;
     max-width: 1200px;
 }
+
+.start {
+    padding: 10px 20px;
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-top: 50px;
+    text-transform: uppercase;
+}

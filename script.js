@@ -103,18 +103,58 @@ function playRound (playerSelection) {
     }
     console.log(`The score is ${playerScore}:${computerScore}.`);
 } */
+function setup () {
+    const container = document.querySelector('.container');
 
-const start = document.createElement('button');
-start.textContent = "Start";
+    container.removeChild(start);
 
-container.appendChild(start);
+    const input = document.createElement('div');
+    input.classList.add('input');
+
+    const rock = document.createElement('button');
+    rock.textContent = "Rock";
+    rock.classList.add("btn");
+    rock.setAttribute("id", "rock");
+
+    const paper = document.createElement('button');
+    paper.textContent = "Paper";
+    paper.classList.add("btn");
+    paper.setAttribute("id", "paper");
+
+    const scissors = document.createElement('button');
+    scissors.textContent = "Scissors"
+    scissors.classList.add("btn");
+    scissors.setAttribute("id", "scissors");
+
+    input.appendChild(rock);
+    input.appendChild(paper);
+    input.appendChild(scissors);
+
+    container.appendChild(input);
+
+    const resultDiv = document.createElement('result');
+    resultDiv.classList.add("result");
+
+    container.appendChild(resultDiv);
+}
+
+function startGame (e) {
+    if (e.target.classList != "start") return;
+
+    setup();
+}
 
 const container = document.querySelector('.container');
 
-const resultDiv = document.createElement('result');
-resultDiv.classList.add("result");
+const start = document.createElement('button');
+start.textContent = "Start";
+start.classList.add('start');
 
-container.appendChild(resultDiv);
+container.appendChild(start);
+
+start.addEventListener('click', function (e) {
+    startGame (e);
+});
 
 const btns = document.querySelectorAll('.btn');
 
