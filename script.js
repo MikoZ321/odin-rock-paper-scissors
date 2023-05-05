@@ -95,7 +95,12 @@ function playRound (playerSelection) {
 function setup () {
     const container = document.querySelector('.container');
 
-    container.removeChild(start);
+    if (document.querySelector('#output') != undefined) {
+        const output = document.querySelector("#output");
+        container.removeChild(output);
+    }
+
+    start.classList.add("invisible");
 
     const input = document.createElement('div');
     input.setAttribute("id", "input");
@@ -207,6 +212,16 @@ function startGame (e) {
 
         if (roundCount == 5) {
             declareWinner();
+            const container = document.querySelector(".container");
+            const input = document.querySelector("#input");
+            container.removeChild(input);
+
+            const start = document.querySelector("#start");
+            start.textContent = "Restart";
+            start.classList.remove("invisible");
+            computerScore = 0;
+            playerScore = 0;
+            roundCount = 0;
         }
     }));
 }
