@@ -24,10 +24,44 @@
     max-width: 1200px;
 }
 
-.start {
+#start {
     padding: 10px 20px;
     font-size: 1.5rem;
     font-weight: 800;
     margin-top: 50px;
     text-transform: uppercase;
+}
+
+#output {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 900px;
+    margin-top: 100px;
+}
+
+.score {
+    width: 120px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.score-title {
+    font-size: 2rem;
+    font-weight: medium;
+    text-transform: uppercase;
+    border-top: 3px solid black;
+    padding-top: 10px;
+}
+
+.score-counter {
+    font-size: 3rem;
+}
+
+#result {
+    font-size: 1.5rem;
 }

@@ -71,7 +71,7 @@ function getOutcome (playerSelection, computerSelection) {
 }
 
 function playRound (playerSelection) {
-    const resultDiv = document.querySelector('.result');
+    const resultDiv = document.querySelector('#result');
 
     let computerSelection = computerPlay();
     let result = getOutcome(playerSelection, computerSelection);
@@ -94,7 +94,7 @@ function setup () {
     container.removeChild(start);
 
     const input = document.createElement('div');
-    input.classList.add('input');
+    input.setAttribute("id", "input");
 
     const rock = document.createElement('button');
     rock.textContent = "Rock";
@@ -117,28 +117,48 @@ function setup () {
 
     container.appendChild(input);
 
-    const resultDiv = document.createElement('div');
-    resultDiv.setAttribute("id", "output");
+    const output = document.createElement('div');
+    output.setAttribute("id", "output");
 
     const scoreLeft = document.createElement('div');
     scoreLeft.classList.add("score", "left");
-    scoreLeft.textContent = "0";
-    resultDiv.appendChild(scoreLeft);
+
+    const scoreLeftTitle = document.createElement('h2');
+    scoreLeftTitle.classList.add("score-title");
+    scoreLeftTitle.textContent = "You";
+
+    const scoreLeftCounter = document.createElement('p');
+    scoreLeftCounter.classList.add("score-counter");
+    scoreLeftCounter.textContent = "0";
+
+    scoreLeft.appendChild(scoreLeftCounter);
+    scoreLeft.appendChild(scoreLeftTitle);
+    output.appendChild(scoreLeft);
 
     const result = document.createElement('p');
-    result.classList.add("result");
-    resultDiv.appendChild(result);
+    result.setAttribute("id", "result");
+    output.appendChild(result);
 
     const scoreRight = document.createElement('div');
     scoreRight.classList.add("score", "right");
-    scoreRight.textContent = "0";
-    resultDiv.appendChild(scoreRight);
 
-    container.insertBefore(resultDiv, input);
+    const scoreRightTitle = document.createElement('h2');
+    scoreRightTitle.classList.add("score-title");
+    scoreRightTitle.textContent = "AI";
+
+    const scoreRightCounter = document.createElement('p');
+    scoreRightCounter.classList.add("score-counter");
+    scoreRightCounter.textContent = "0";
+
+    scoreRight.appendChild(scoreRightCounter);
+    scoreRight.appendChild(scoreRightTitle);
+    output.appendChild(scoreRight);
+
+    container.insertBefore(output, input);
 }
 
 function startGame (e) {
-    if (e.target.classList != "start") return;
+    if (e.target.id != "start") return;
 
     setup();
 
@@ -150,7 +170,9 @@ function startGame (e) {
     
     btns.forEach(btn => btn.addEventListener('click', function (e) {
         const scoreLeft = document.querySelector(".left");
+        const scoreLeftCounter = scoreLeft.querySelector(".score-counter");
         const scoreRight = document.querySelector(".right")
+        const scoreRightCounter = scoreRight.querySelector(".score-counter");
 
         let result = playRound(e.target.id);
 
@@ -164,9 +186,9 @@ function startGame (e) {
             playerScore++;
             computerScore++;
         }
-        scoreLeft.textContent = `${playerScore}`;
-        scoreRight.textContent = `${computerScore}`;
-        
+        scoreLeftCounter.textContent = `${playerScore}`;
+        scoreRightCounter.textContent = `${computerScore}`;
+
         roundCount++;
         console.log(`${roundCount}: ${playerScore} vs ${computerScore}`);
     }));
@@ -176,7 +198,7 @@ const container = document.querySelector('.container');
 
 const start = document.createElement('button');
 start.textContent = "Start";
-start.classList.add('start');
+start.setAttribute("id", "start");
 
 container.appendChild(start);
 
