@@ -83,7 +83,7 @@ function playRound (playerSelection) {
         resultDiv.textContent = `You lose, ${computerSelection} beats ${playerSelection}.`;
     }
     else {
-        resultDiv.textContent = `You tie, ${computerSelection} ties with ${playerSelection}`;
+        resultDiv.textContent = `You tie, ${computerSelection} ties with ${playerSelection}.`;
     }
     return result;
 }
@@ -118,9 +118,23 @@ function setup () {
     container.appendChild(input);
 
     const resultDiv = document.createElement('div');
-    resultDiv.classList.add("result");
+    resultDiv.setAttribute("id", "output");
 
-    container.appendChild(resultDiv);
+    const scoreLeft = document.createElement('div');
+    scoreLeft.classList.add("score", "left");
+    scoreLeft.textContent = "0";
+    resultDiv.appendChild(scoreLeft);
+
+    const result = document.createElement('p');
+    result.classList.add("result");
+    resultDiv.appendChild(result);
+
+    const scoreRight = document.createElement('div');
+    scoreRight.classList.add("score", "right");
+    scoreRight.textContent = "0";
+    resultDiv.appendChild(scoreRight);
+
+    container.insertBefore(resultDiv, input);
 }
 
 function startGame (e) {
@@ -135,7 +149,11 @@ function startGame (e) {
     const btns = document.querySelectorAll('.btn');
     
     btns.forEach(btn => btn.addEventListener('click', function (e) {
+        const scoreLeft = document.querySelector(".left");
+        const scoreRight = document.querySelector(".right")
+
         let result = playRound(e.target.id);
+
         if (result == "Win") {
             playerScore++;
         }
@@ -146,6 +164,9 @@ function startGame (e) {
             playerScore++;
             computerScore++;
         }
+        scoreLeft.textContent = `${playerScore}`;
+        scoreRight.textContent = `${computerScore}`;
+        
         roundCount++;
         console.log(`${roundCount}: ${playerScore} vs ${computerScore}`);
     }));
