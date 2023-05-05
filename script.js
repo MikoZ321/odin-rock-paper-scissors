@@ -1,5 +1,9 @@
 const random = n => Math.floor(Math.random() * n)
 
+let computerScore = 0;
+let playerScore = 0;
+let roundCount = 0;
+
 function computerPlay () {
     let n = random(3);
     let move;
@@ -157,14 +161,24 @@ function setup () {
     container.insertBefore(output, input);
 }
 
+function declareWinner () {
+    console.log("declaring winner");
+    const result = document.querySelector("#result");
+    if (playerScore > computerScore) {
+        result.textContent = "You win!";
+    }
+    else if (playerScore < computerScore) {
+        result.textContent = "You lose.";
+    }
+    else {
+        result.textContent = "You tie.";
+    }
+}
+
 function startGame (e) {
     if (e.target.id != "start") return;
 
     setup();
-
-    let computerScore = 0;
-    let playerScore = 0;
-    let roundCount = 0;
 
     const btns = document.querySelectorAll('.btn');
     
@@ -190,7 +204,10 @@ function startGame (e) {
         scoreRightCounter.textContent = `${computerScore}`;
 
         roundCount++;
-        console.log(`${roundCount}: ${playerScore} vs ${computerScore}`);
+
+        if (roundCount == 5) {
+            declareWinner();
+        }
     }));
 }
 
