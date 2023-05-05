@@ -30,6 +30,7 @@
     font-weight: 800;
     margin-top: 50px;
     text-transform: uppercase;
+    cursor: pointer;
 }
 
 #output {
@@ -68,4 +69,24 @@
 
 .invisible {
     opacity: 0%;
+    margin-right: 100%;
+    width: 1px;
+}
+
+#input {
+    max-width: 500px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    margin-top: 50px;
+}
+
+#input .btn {
+    padding: 10px 20px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
 }
