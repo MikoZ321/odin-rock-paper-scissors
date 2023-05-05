@@ -70,11 +70,6 @@ function getOutcome (playerSelection, computerSelection) {
     }
 }
 
-const container = document.querySelector('.container');
-
-const resultDiv = document.createElement('result');
-resultDiv.classList.add("result");
-
 function playRound (playerSelection) {
     let computerSelection = computerPlay();
     let result = getOutcome(playerSelection, computerSelection);
@@ -89,8 +84,6 @@ function playRound (playerSelection) {
     }
     return result;
 }
-
-container.appendChild(resultDiv);
 
 /* function game () {
     let computerScore = 0;
@@ -110,6 +103,18 @@ container.appendChild(resultDiv);
     }
     console.log(`The score is ${playerScore}:${computerScore}.`);
 } */
+
+const start = document.createElement('button');
+start.textContent = "Start";
+
+container.appendChild(start);
+
+const container = document.querySelector('.container');
+
+const resultDiv = document.createElement('result');
+resultDiv.classList.add("result");
+
+container.appendChild(resultDiv);
 
 const btns = document.querySelectorAll('.btn');
 
