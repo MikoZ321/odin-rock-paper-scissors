@@ -71,8 +71,11 @@ function getOutcome (playerSelection, computerSelection) {
 }
 
 function playRound (playerSelection) {
+    const resultDiv = document.querySelector('.result');
+
     let computerSelection = computerPlay();
     let result = getOutcome(playerSelection, computerSelection);
+    
     if (result === 'Win') {
         resultDiv.textContent = `You win, ${playerSelection} beats ${computerSelection}!`;
     }
@@ -142,6 +145,12 @@ function startGame (e) {
     if (e.target.classList != "start") return;
 
     setup();
+
+    const btns = document.querySelectorAll('.btn');
+
+    btns.forEach(btn => btn.addEventListener('click', function (e) {
+        playRound(e.target.id);
+    }));
 }
 
 const container = document.querySelector('.container');
@@ -155,9 +164,3 @@ container.appendChild(start);
 start.addEventListener('click', function (e) {
     startGame (e);
 });
-
-const btns = document.querySelectorAll('.btn');
-
-btns.forEach(btn => btn.addEventListener('click', function (e) {
-    playRound(e.target.id);
-}));
