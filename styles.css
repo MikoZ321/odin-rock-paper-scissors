@@ -4,3 +4,22 @@
     box-sizing: border-box;
     font-family: 'Segoe UI', Helvetica, sans-serif;
 }
+
+.container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+#title {
+    font-size: 5rem;
+    margin-top: 40px;
+}
+
+.rules {
+    margin-top: 20px;
+    font-size: 2rem;
+    max-width: 1200px;
+}
