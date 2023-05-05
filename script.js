@@ -75,7 +75,7 @@ function playRound (playerSelection) {
 
     let computerSelection = computerPlay();
     let result = getOutcome(playerSelection, computerSelection);
-    
+
     if (result === 'Win') {
         resultDiv.textContent = `You win, ${playerSelection} beats ${computerSelection}!`;
     }
@@ -88,24 +88,6 @@ function playRound (playerSelection) {
     return result;
 }
 
-/* function game () {
-    let computerScore = 0;
-    let playerScore = 0;
-    for (let i = 0; i < 5; i++) {
-        let result = playRound(playerSelection);
-        if (result === 'Win') {
-            playerScore++;
-        }
-        else if (result === 'Lose') {
-            computerScore++;
-        }
-        else {
-            playerScore++;
-            computerScore++;
-        }
-    }
-    console.log(`The score is ${playerScore}:${computerScore}.`);
-} */
 function setup () {
     const container = document.querySelector('.container');
 
@@ -135,7 +117,7 @@ function setup () {
 
     container.appendChild(input);
 
-    const resultDiv = document.createElement('result');
+    const resultDiv = document.createElement('div');
     resultDiv.classList.add("result");
 
     container.appendChild(resultDiv);
@@ -146,10 +128,26 @@ function startGame (e) {
 
     setup();
 
-    const btns = document.querySelectorAll('.btn');
+    let computerScore = 0;
+    let playerScore = 0;
+    let roundCount = 0;
 
+    const btns = document.querySelectorAll('.btn');
+    
     btns.forEach(btn => btn.addEventListener('click', function (e) {
-        playRound(e.target.id);
+        let result = playRound(e.target.id);
+        if (result == "Win") {
+            playerScore++;
+        }
+        else if (result == "Lose") {
+            computerScore++;
+        }
+        else {
+            playerScore++;
+            computerScore++;
+        }
+        roundCount++;
+        console.log(`${roundCount}: ${playerScore} vs ${computerScore}`);
     }));
 }
 
