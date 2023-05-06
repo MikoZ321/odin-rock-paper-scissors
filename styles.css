@@ -1,8 +1,28 @@
+@font-face {
+    font-family: 'Bruno Ace SC';
+    src: url(./Bruno_Ace_SC/BrunoAceSC-Regular.ttf);
+}
+
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     font-family: 'Segoe UI', Helvetica, sans-serif;
+}
+
+header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#title {
+    font-size: 5rem;
+    margin-top: 40px;
+    text-transform: uppercase;
+    text-align: center;
+    font-family: 'Bruno Ace SC';
 }
 
 .container {
@@ -11,11 +31,6 @@
     text-align: center;
     justify-content: center;
     align-items: center;
-}
-
-#title {
-    font-size: 5rem;
-    margin-top: 40px;
 }
 
 .rules {
