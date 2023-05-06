@@ -3,6 +3,13 @@
     src: url(./Bruno_Ace_SC/BrunoAceSC-Regular.ttf);
 }
 
+:root {
+    --background-color: #000000;
+    --background-color-2: #2D3A3A;
+    --text-color-gold: #FFD300;
+    --text-shadow: #FFDE24;
+    --text-color-green: #248247;
+}
 * {
     padding: 0;
     margin: 0;
@@ -10,34 +17,50 @@
     font-family: 'Segoe UI', Helvetica, sans-serif;
 }
 
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: var(--background-color);
+}
+
 header {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: var(--background-color);
 }
 
 #title {
     font-size: 5rem;
-    margin-top: 40px;
+    margin: 40px auto;
     text-transform: uppercase;
     text-align: center;
     font-family: 'Bruno Ace SC';
+    color: var(--text-color-gold);
+    text-shadow: 0 0 5px var(--text-shadow);
 }
 
 .container {
+    width: 80vw;
+    height: 70vh;
+    border-radius: 5px;
     display: flex;
     flex-direction: column;
     text-align: center;
     justify-content: center;
     align-items: center;
+    background-color: var(--background-color-2);
 }
 
-.rules {
+/*.rules {
     margin-top: 20px;
     font-size: 2rem;
     max-width: 1200px;
-}
+} */
 
 #start {
     padding: 10px 20px;
@@ -55,6 +78,7 @@ header {
     width: 100%;
     max-width: 900px;
     margin-top: 100px;
+    color: var(--text-color-green);
 }
 
 .score {
@@ -70,7 +94,7 @@ header {
     font-size: 2rem;
     font-weight: medium;
     text-transform: uppercase;
-    border-top: 3px solid black;
+    border-top: 3px solid var(--text-color-green);
     padding-top: 10px;
 }
 
@@ -80,6 +104,7 @@ header {
 
 #result {
     font-size: 1.5rem;
+    background-color: var(--background-color-2);
 }
 
 .invisible {
