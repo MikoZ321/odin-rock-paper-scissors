@@ -163,7 +163,7 @@ header {
 }
 
 #input {
-    max-width: 500px;
+    max-width: 600px;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -178,4 +178,19 @@ header {
     font-weight: bold;
     cursor: pointer;
     text-transform: uppercase;
+    width: 170px;
+    border-radius: 10px;
+    background-color: var(--background-color-green-dark);
+    color: var(--accent-color-white);
+    border: none;
+}
+
+#input .btn:hover {
+    transition-duration: 0.4s;
+    transform: scale(1.1);
+}
+
+#input .btn:active {
+    transition-duration: 0.4s;
+    transform: scale(0.9);
 }
