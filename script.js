@@ -1,5 +1,10 @@
+const DEFAULT_MODE = "best";
+const DEFAULT_WIN = 5;
+
 const random = n => Math.floor(Math.random() * n)
 
+let currentMode = DEFAULT_MODE;
+let currentWin = DEFAULT_WIN;
 let computerScore = 0;
 let playerScore = 0;
 let roundCount = 0;
@@ -24,6 +29,7 @@ function getOutcome (playerSelection, computerSelection) {
     if (playerSelection === undefined) {
         throw new ReferenceError('playerSelection is not defined');
     }
+
     playerSelection = playerSelection.toLowerCase();
     switch (true) {
         case (playerSelection === 'rock'): {
@@ -96,7 +102,7 @@ function playRound (playerSelection) {
     return result;
 }
 
-function setup () {
+function setupGame () {
     const container = document.querySelector('.container');
 
     if (document.querySelector('#output') != undefined) {
@@ -104,8 +110,7 @@ function setup () {
         container.removeChild(output);
     }
 
-    // Hide #start
-    start.classList.add("invisible");
+    home.innerHTML = '';
 
     // Start #input
     const input = document.createElement('div');
@@ -182,10 +187,10 @@ function setup () {
 
     container.insertBefore(output, input);
     // End #output
+    return;
 }
 
 function declareWinner () {
-    console.log("declaring winner");
     const result = document.querySelector("#resultTitle");
     if (playerScore > computerScore) {
         result.textContent = "You win!";
@@ -196,12 +201,15 @@ function declareWinner () {
     else {
         result.textContent = "You tie";
     }
+    return;
 }
 
-function startGame (e) {
+function startGame (e, currentMode, currentWin) {
     if (e.target.id != "start") return;
 
-    setup();
+    console.log(currentMode);
+    console.log(currentWin);
+    setupGame();
 
     const btns = document.querySelectorAll('.btn');
     
@@ -230,28 +238,131 @@ function startGame (e) {
 
         if (roundCount == 5) {
             declareWinner();
-            const container = document.querySelector(".container");
             const input = document.querySelector("#input");
-            container.removeChild(input);
+            input.innerHTML = '';
 
-            const start = document.querySelector("#start");
+            const home = document.querySelector("#home");
+
+            makeStartBtn();
             start.textContent = "Restart";
-            start.classList.remove("invisible");
+
+            makeHomeBtn();
+
             computerScore = 0;
             playerScore = 0;
             roundCount = 0;
         }
     }));
+    return;
 }
 
-const container = document.querySelector('.container');
+function makeStartBtn  () {
+    const start = document.createElement('button');
+    start.textContent = "Start";
+    start.classList.add("btn");
+    start.setAttribute("id", "start");
 
-const start = document.createElement('button');
-start.textContent = "Start";
-start.setAttribute("id", "start");
+    home.appendChild(start);
 
-container.appendChild(start);
+    start.addEventListener('click', function (e) {
+        const container = document.querySelector(".container");
+        const input = document.querySelector("#input");
+        if (input != null) container.removeChild(input);
+        startGame (e, currentMode, currentWin);
+    });
+    return;
+}
 
-start.addEventListener('click', function (e) {
-    startGame (e);
-});
+function makeRulesBtn () {
+    const home = document.querySelector("#home");
+
+    const rulesBtn = document.createElement("button");
+    rulesBtn.classList.add("btn");
+    rulesBtn.setAttribute("id", "rules");
+    rulesBtn.textContent = "Rules";
+
+    home.appendChild(rulesBtn);
+
+    rulesBtn.addEventListener('click', function () {
+        setupRules();
+    });
+    return;
+}
+
+function makeHomeBtn () {
+    const home = document.querySelector("#home");
+
+    const homeBtn = document.createElement('button');
+    homeBtn.classList.add("btn");
+    homeBtn.setAttribute("id", "homeBtn");
+    homeBtn.textContent = "Home";
+
+    home.appendChild(homeBtn);
+
+    homeBtn.addEventListener('click', function () {
+        home.removeChild(homeBtn);
+        setupHome();
+    });
+    return;
+}
+
+function setupRules () {
+    const container = document.querySelector(".container");
+    const home = document.querySelector("#home");
+
+    home.innerHTML = "";
+
+    const rulesDiv = document.createElement('div');
+    rulesDiv.setAttribute("id", "rulesDiv");
+
+    const p1 = document.createElement('p');
+    p1.textContent = "Welcome, to Rock Paper Scissors (RPS) the most skill-based and most difficult game in existance. In case you don't know them yet, here are the rules:";
+
+    const p2 = document.createElement('p');
+    p2.textContent = "- Rock beats Paper"
+
+    const p3 = document.createElement('p');
+    p3.textContent = "- Paper beats Scissors";
+
+    const p4 = document.createElement('p');
+    p4.textContent = "- Scissors beats Paper";
+
+    const p5 = document.createElement('p');
+    p5.textContent = "It's that simple. On this site you can play against an incredibly advanced AI called RPS in a variety of different modes.";
+
+    rulesDiv.appendChild(p1);
+    rulesDiv.appendChild(p2);
+    rulesDiv.appendChild(p3);
+    rulesDiv.appendChild(p4);
+    rulesDiv.appendChild(p5);
+
+    container.insertBefore(rulesDiv, home);
+
+    makeHomeBtn();
+
+    return;
+}
+
+function setupHome () {
+    const container = document.querySelector(".container");
+
+    const output = document.querySelector('#output');
+    if (output != null) container.removeChild(output);
+
+    const input = document.querySelector('#input');
+    if (input != null) container.removeChild(input);
+
+    const rulesDiv = document.querySelector('#rulesDiv');
+    if (rulesDiv != null) container.removeChild(rulesDiv);
+
+    const home = document.querySelector('#home');
+
+    home.innerHTML = '';
+
+    makeStartBtn();
+    makeRulesBtn();
+
+    return;
+}
+
+setupHome();
