@@ -1,9 +1,10 @@
-const DEFAULT_MODE = "best5";
+const DEFAULT_MODE = "best";
+const DEFAULT_WIN = 5;
 
 const random = n => Math.floor(Math.random() * n)
 
 let currentMode = DEFAULT_MODE;
-
+let currentWin = DEFAULT_WIN;
 let computerScore = 0;
 let playerScore = 0;
 let roundCount = 0;
@@ -28,6 +29,7 @@ function getOutcome (playerSelection, computerSelection) {
     if (playerSelection === undefined) {
         throw new ReferenceError('playerSelection is not defined');
     }
+
     playerSelection = playerSelection.toLowerCase();
     switch (true) {
         case (playerSelection === 'rock'): {
@@ -110,6 +112,7 @@ function setupGame () {
 
     // Hide #home
     home.classList.add("invisible");
+    home.innerHTML = '';
 
     // Start #input
     const input = document.createElement('div');
@@ -186,10 +189,10 @@ function setupGame () {
 
     container.insertBefore(output, input);
     // End #output
+    return;
 }
 
 function declareWinner () {
-    console.log("declaring winner");
     const result = document.querySelector("#resultTitle");
     if (playerScore > computerScore) {
         result.textContent = "You win!";
@@ -200,11 +203,14 @@ function declareWinner () {
     else {
         result.textContent = "You tie";
     }
+    return;
 }
 
-function startGame (e) {
+function startGame (e, currentMode, currentWin) {
     if (e.target.id != "start") return;
 
+    console.log(currentMode);
+    console.log(currentWin);
     setupGame();
 
     const btns = document.querySelectorAll('.btn');
@@ -234,29 +240,68 @@ function startGame (e) {
 
         if (roundCount == 5) {
             declareWinner();
-            const container = document.querySelector(".container");
             const input = document.querySelector("#input");
-            container.removeChild(input);
+            input.innerHTML = '';
 
             const home = document.querySelector("#home");
-            const start = document.querySelector("#start");
+
+            makeStartBtn();
             start.textContent = "Restart";
+
+            const homeBtn = document.createElement('button');
+            homeBtn.classList.add("btn");
+            homeBtn.setAttribute("id", "homeBtn");
+            homeBtn.textContent = "Home";
+
+            home.appendChild(homeBtn);
             home.classList.remove("invisible");
+
             computerScore = 0;
             playerScore = 0;
             roundCount = 0;
+
+            homeBtn.addEventListener('click', function () {
+                home.removeChild(homeBtn);
+                setupHome();
+            });
         }
     }));
 }
 
-const home = document.querySelector('#home');
+function setupHome () {
+    const container = document.querySelector(".container");
 
-const start = document.createElement('button');
-start.textContent = "Start";
-start.setAttribute("id", "start");
+    const output = document.querySelector('#output');
+    if (output != null) container.removeChild(output);
 
-home.appendChild(start);
+    const input = document.querySelector('#input');
+    if (input != null) container.removeChild(input);
 
-start.addEventListener('click', function (e) {
-    startGame (e);
-});
+    const home = document.querySelector('#home');
+
+    home.innerHTML = '';
+
+    makeStartBtn();
+
+    return;
+}
+
+function makeStartBtn  () {
+    const start = document.createElement('button');
+    start.textContent = "Start";
+    start.classList.add("btn");
+    start.setAttribute("id", "start");
+
+    home.appendChild(start);
+
+    start.addEventListener('click', function (e) {
+        const container = document.querySelector(".container");
+        const input = document.querySelector("#input");
+        if (input != null) container.removeChild(input);
+        startGame (e, currentMode, currentWin);
+    });
+
+    return;
+}
+
+setupHome();
