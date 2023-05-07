@@ -1,4 +1,8 @@
+const DEFAULT_MODE = "best5";
+
 const random = n => Math.floor(Math.random() * n)
+
+let currentMode = DEFAULT_MODE;
 
 let computerScore = 0;
 let playerScore = 0;
@@ -96,7 +100,7 @@ function playRound (playerSelection) {
     return result;
 }
 
-function setup () {
+function setupGame () {
     const container = document.querySelector('.container');
 
     if (document.querySelector('#output') != undefined) {
@@ -104,8 +108,8 @@ function setup () {
         container.removeChild(output);
     }
 
-    // Hide #start
-    start.classList.add("invisible");
+    // Hide #home
+    home.classList.add("invisible");
 
     // Start #input
     const input = document.createElement('div');
@@ -201,7 +205,7 @@ function declareWinner () {
 function startGame (e) {
     if (e.target.id != "start") return;
 
-    setup();
+    setupGame();
 
     const btns = document.querySelectorAll('.btn');
     
@@ -234,9 +238,10 @@ function startGame (e) {
             const input = document.querySelector("#input");
             container.removeChild(input);
 
+            const home = document.querySelector("#home");
             const start = document.querySelector("#start");
             start.textContent = "Restart";
-            start.classList.remove("invisible");
+            home.classList.remove("invisible");
             computerScore = 0;
             playerScore = 0;
             roundCount = 0;
@@ -244,13 +249,13 @@ function startGame (e) {
     }));
 }
 
-const container = document.querySelector('.container');
+const home = document.querySelector('#home');
 
 const start = document.createElement('button');
 start.textContent = "Start";
 start.setAttribute("id", "start");
 
-container.appendChild(start);
+home.appendChild(start);
 
 start.addEventListener('click', function (e) {
     startGame (e);

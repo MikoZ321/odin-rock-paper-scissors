@@ -23,6 +23,7 @@
     margin: 0;
     box-sizing: border-box;
     font-family: 'Segoe UI', Helvetica, sans-serif;
+    overflow-x: hidden;
 }
 
 body {
@@ -87,12 +88,18 @@ header {
     font-size: 2rem;
     max-width: 1200px;
 } */
-
+#home {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: 100px;
+}
 #start {
     padding: 15px 40px;
     font-size: 2.5rem;
     font-weight: 800;
-    margin-top: 50px;
     text-transform: uppercase;
     cursor: pointer;
     background-color: var(--background-color-green-dark);
@@ -173,21 +180,23 @@ header {
 
 .invisible {
     opacity: 0%;
-    margin-right: 100%;
+    margin-right: 100vw;
     width: 1px;
 }
 
 #input {
-    max-width: 600px;
+    max-width: 620px;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     text-align: center;
     margin-top: 50px;
+    height: 60px;
 }
 
 #input .btn {
+    margin: 0 auto;
     padding: 10px 20px;
     font-size: 1.5rem;
     font-weight: bold;
