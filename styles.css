@@ -39,7 +39,7 @@ header {
 
 #title {
     font-size: 5rem;
-    margin: 40px auto;
+    margin-top: 40px;
     text-transform: uppercase;
     text-align: center;
     font-family: 'Bruno Ace SC';
@@ -48,8 +48,9 @@ header {
 }
 
 .outer {
+    margin-top: 40px;
     background: radial-gradient(
-        circle at center,
+        circle farthest-side at center,
         var(--background-color-brown-dark) 0,
         var(--background-color-chestnut) 92%,
         var(--background-color-brown-dark) 100%
@@ -60,6 +61,7 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+    box-shadow: 0 0 50px 3px #242424;
 }
 
 .container {
