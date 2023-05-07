@@ -178,12 +178,6 @@ header {
     text-transform: uppercase;
 }
 
-.invisible {
-    opacity: 0%;
-    margin-right: 100vw;
-    width: 1px;
-}
-
 #input {
     max-width: 620px;
     width: 100%;

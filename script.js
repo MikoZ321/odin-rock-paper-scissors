@@ -111,7 +111,6 @@ function setupGame () {
     }
 
     // Hide #home
-    home.classList.add("invisible");
     home.innerHTML = '';
 
     // Start #input
@@ -248,41 +247,13 @@ function startGame (e, currentMode, currentWin) {
             makeStartBtn();
             start.textContent = "Restart";
 
-            const homeBtn = document.createElement('button');
-            homeBtn.classList.add("btn");
-            homeBtn.setAttribute("id", "homeBtn");
-            homeBtn.textContent = "Home";
-
-            home.appendChild(homeBtn);
-            home.classList.remove("invisible");
+            makeHomeBtn();
 
             computerScore = 0;
             playerScore = 0;
             roundCount = 0;
-
-            homeBtn.addEventListener('click', function () {
-                home.removeChild(homeBtn);
-                setupHome();
-            });
         }
     }));
-}
-
-function setupHome () {
-    const container = document.querySelector(".container");
-
-    const output = document.querySelector('#output');
-    if (output != null) container.removeChild(output);
-
-    const input = document.querySelector('#input');
-    if (input != null) container.removeChild(input);
-
-    const home = document.querySelector('#home');
-
-    home.innerHTML = '';
-
-    makeStartBtn();
-
     return;
 }
 
@@ -300,6 +271,60 @@ function makeStartBtn  () {
         if (input != null) container.removeChild(input);
         startGame (e, currentMode, currentWin);
     });
+
+    return;
+}
+
+function makeRulesBtn () {
+    const home = document.querySelector("#home");
+
+    const rulesBtn = document.createElement("button");
+    rulesBtn.classList.add("btn");
+    rulesBtn.setAttribute("id", "rules");
+    rulesBtn.textContent = "Rules";
+
+    home.appendChild(rulesBtn);
+
+    rulesBtn.addEventListener('click', function () {
+        console.log("rules");
+    })
+
+    return;
+}
+
+function makeHomeBtn () {
+    const home = document.querySelector("#home");
+
+    const homeBtn = document.createElement('button');
+    homeBtn.classList.add("btn");
+    homeBtn.setAttribute("id", "homeBtn");
+    homeBtn.textContent = "Home";
+
+    home.appendChild(homeBtn);
+
+    homeBtn.addEventListener('click', function () {
+        home.removeChild(homeBtn);
+        setupHome();
+    });
+    return;
+}
+
+function setupHome () {
+    const container = document.querySelector(".container");
+
+    const output = document.querySelector('#output');
+    if (output != null) container.removeChild(output);
+
+    const input = document.querySelector('#input');
+    if (input != null) container.removeChild(input);
+
+    const home = document.querySelector('#home');
+
+    home.innerHTML = '';
+
+    makeStartBtn();
+
+    makeRulesBtn();
 
     return;
 }
