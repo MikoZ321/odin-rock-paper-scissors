@@ -17,6 +17,7 @@
     --accent-color-white: #E3DAC9;
     --container-width: 80vw;
     --container-height: 70vh;
+    --output-width: 900px;
 }
 * {
     padding: 0;
@@ -124,7 +125,7 @@ header {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    max-width: 900px;
+    max-width: var(--output-width);
     margin-top: 100px;
     color: var(--accent-color-white);
     background-color: var(--background-color-green-dark);
@@ -211,4 +212,17 @@ header {
 #input .btn:active {
     transition-duration: 0.4s;
     transform: scale(0.9);
+}
+
+#rulesDiv {
+    text-align: left;
+    max-width: var(--output-width);
+    width: 100%;
+    font-size: 1.7rem;
+    color: var(--accent-color-white);
+    background-color: var(--background-color-green-dark);
+    border-radius: 5px;
+    padding: 20px 30px;
+    line-height: 1.2;
+    border: 3px solid var(--accent-color-white);
 }

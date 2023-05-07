@@ -317,21 +317,26 @@ function setupRules () {
     rulesDiv.setAttribute("id", "rulesDiv");
 
     const p1 = document.createElement('p');
-    p1.textContent = "Welcome, to Rock Paper Scissors (RPS) the most skill-based and most difficult game in existance.";
+    p1.textContent = "Welcome, to Rock Paper Scissors (RPS) the most skill-based and most difficult game in existance. In case you don't know them yet, here are the rules:";
+
     const p2 = document.createElement('p');
-    p2.textContent = "In case you don't know them yet, here are the rules:"
+    p2.textContent = "- Rock beats Paper"
+
     const p3 = document.createElement('p');
-    p3.textContent = "Rock beats Paper";
+    p3.textContent = "- Paper beats Scissors";
+
     const p4 = document.createElement('p');
-    p4.textContent = "Paper beats Scissors";
+    p4.textContent = "- Scissors beats Paper";
+
     const p5 = document.createElement('p');
-    p5.textContent = "Scissors beats Paper";
+    p5.textContent = "It's that simple. On this site you can play against an incredibly advanced AI called RPS in a variety of different modes.";
 
     rulesDiv.appendChild(p1);
     rulesDiv.appendChild(p2);
     rulesDiv.appendChild(p3);
     rulesDiv.appendChild(p4);
     rulesDiv.appendChild(p5);
+
     container.insertBefore(rulesDiv, home);
 
     makeHomeBtn();
