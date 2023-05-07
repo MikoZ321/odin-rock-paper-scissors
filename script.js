@@ -110,7 +110,6 @@ function setupGame () {
         container.removeChild(output);
     }
 
-    // Hide #home
     home.innerHTML = '';
 
     // Start #input
