@@ -102,96 +102,13 @@ function playRound (playerSelection) {
     return result;
 }
 
-function setupGame () {
-    const container = document.querySelector('.container');
-
-    if (document.querySelector('#output') != undefined) {
-        const output = document.querySelector("#output");
-        container.removeChild(output);
-    }
-
-    home.innerHTML = '';
-
-    // Start #input
-    const input = document.createElement('div');
-    input.setAttribute("id", "input");
-
-    const rock = document.createElement('button');
-    rock.textContent = "Rock";
-    rock.classList.add("btn");
-    rock.setAttribute("id", "rock");
-
-    const paper = document.createElement('button');
-    paper.textContent = "Paper";
-    paper.classList.add("btn");
-    paper.setAttribute("id", "paper");
-
-    const scissors = document.createElement('button');
-    scissors.textContent = "Scissors"
-    scissors.classList.add("btn");
-    scissors.setAttribute("id", "scissors");
-
-    input.appendChild(rock);
-    input.appendChild(paper);
-    input.appendChild(scissors);
-
-    container.appendChild(input);
-    // End #input
-
-    // Start #output
-    const output = document.createElement('div');
-    output.setAttribute("id", "output");
-
-    const scoreLeft = document.createElement('div');
-    scoreLeft.classList.add("score", "left");
-
-    const scoreLeftTitle = document.createElement('h2');
-    scoreLeftTitle.classList.add("score-title");
-    scoreLeftTitle.textContent = "You";
-
-    const scoreLeftCounter = document.createElement('p');
-    scoreLeftCounter.classList.add("score-counter");
-    scoreLeftCounter.textContent = "0";
-
-    scoreLeft.appendChild(scoreLeftCounter);
-    scoreLeft.appendChild(scoreLeftTitle);
-    output.appendChild(scoreLeft);
-
-    const result = document.createElement('div');
-    result.setAttribute("id", "resultDiv");
-
-    const resultTitle = document.createElement('h2');
-    resultTitle.setAttribute("id", "resultTitle");
-
-    const resultText = document.createElement('p');
-    resultText.setAttribute("id", "resultText");
-
-    result.appendChild(resultTitle);
-    result.appendChild(resultText);
-    output.appendChild(result);
-
-    const scoreRight = document.createElement('div');
-    scoreRight.classList.add("score", "right");
-
-    const scoreRightTitle = document.createElement('h2');
-    scoreRightTitle.classList.add("score-title");
-    scoreRightTitle.textContent = "RPS";
-
-    const scoreRightCounter = document.createElement('p');
-    scoreRightCounter.classList.add("score-counter");
-    scoreRightCounter.textContent = "0";
-
-    scoreRight.appendChild(scoreRightCounter);
-    scoreRight.appendChild(scoreRightTitle);
-    output.appendChild(scoreRight);
-
-    container.insertBefore(output, input);
-    // End #output
-    return;
-}
-
 function declareWinner () {
+    const resultDiv = document.querySelector("#resultDiv");
     const result = document.querySelector("#resultTitle");
+    const resultText = document.querySelector("#resultText");
+
+    resultDiv.removeChild(resultText);
+
     if (playerScore > computerScore) {
         result.textContent = "You win!";
     }
@@ -315,6 +232,99 @@ function makeSettingsBtn () {
     settingsBtn.textContent = "Settings";
 
     home.appendChild(settingsBtn);
+
+    settingsBtn.addEventListener('click', function () {
+        console.log("settings");
+    });
+    return;
+}
+
+function setupGame () {
+    const container = document.querySelector('.container');
+
+    if (document.querySelector('#output') != undefined) {
+        const output = document.querySelector("#output");
+        container.removeChild(output);
+    }
+
+    home.innerHTML = '';
+
+    // Start #input
+    const input = document.createElement('div');
+    input.setAttribute("id", "input");
+
+    const rock = document.createElement('button');
+    rock.textContent = "Rock";
+    rock.classList.add("btn");
+    rock.setAttribute("id", "rock");
+
+    const paper = document.createElement('button');
+    paper.textContent = "Paper";
+    paper.classList.add("btn");
+    paper.setAttribute("id", "paper");
+
+    const scissors = document.createElement('button');
+    scissors.textContent = "Scissors"
+    scissors.classList.add("btn");
+    scissors.setAttribute("id", "scissors");
+
+    input.appendChild(rock);
+    input.appendChild(paper);
+    input.appendChild(scissors);
+
+    container.appendChild(input);
+    // End #input
+
+    // Start #output
+    const output = document.createElement('div');
+    output.setAttribute("id", "output");
+
+    const scoreLeft = document.createElement('div');
+    scoreLeft.classList.add("score", "left");
+
+    const scoreLeftTitle = document.createElement('h2');
+    scoreLeftTitle.classList.add("score-title");
+    scoreLeftTitle.textContent = "You";
+
+    const scoreLeftCounter = document.createElement('p');
+    scoreLeftCounter.classList.add("score-counter");
+    scoreLeftCounter.textContent = "0";
+
+    scoreLeft.appendChild(scoreLeftCounter);
+    scoreLeft.appendChild(scoreLeftTitle);
+    output.appendChild(scoreLeft);
+
+    const result = document.createElement('div');
+    result.setAttribute("id", "resultDiv");
+
+    const resultTitle = document.createElement('h2');
+    resultTitle.setAttribute("id", "resultTitle");
+
+    const resultText = document.createElement('p');
+    resultText.setAttribute("id", "resultText");
+
+    result.appendChild(resultTitle);
+    result.appendChild(resultText);
+    output.appendChild(result);
+
+    const scoreRight = document.createElement('div');
+    scoreRight.classList.add("score", "right");
+
+    const scoreRightTitle = document.createElement('h2');
+    scoreRightTitle.classList.add("score-title");
+    scoreRightTitle.textContent = "RPS";
+
+    const scoreRightCounter = document.createElement('p');
+    scoreRightCounter.classList.add("score-counter");
+    scoreRightCounter.textContent = "0";
+
+    scoreRight.appendChild(scoreRightCounter);
+    scoreRight.appendChild(scoreRightTitle);
+    output.appendChild(scoreRight);
+
+    container.insertBefore(output, input);
+    // End #output
+    return;
 }
 
 function setupRules () {
