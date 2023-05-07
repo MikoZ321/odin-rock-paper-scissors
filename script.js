@@ -306,6 +306,17 @@ function makeHomeBtn () {
     return;
 }
 
+function makeSettingsBtn () {
+    const home = document.querySelector("#home");
+
+    const settingsBtn = document.createElement('button');
+    settingsBtn.classList.add("btn");
+    settingsBtn.setAttribute("id", "settings");
+    settingsBtn.textContent = "Settings";
+
+    home.appendChild(settingsBtn);
+}
+
 function setupRules () {
     const container = document.querySelector(".container");
     const home = document.querySelector("#home");
@@ -361,6 +372,7 @@ function setupHome () {
 
     makeStartBtn();
     makeRulesBtn();
+    makeSettingsBtn();
 
     return;
 }
