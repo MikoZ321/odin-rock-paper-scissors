@@ -271,7 +271,6 @@ function makeStartBtn  () {
         if (input != null) container.removeChild(input);
         startGame (e, currentMode, currentWin);
     });
-
     return;
 }
 
@@ -286,9 +285,8 @@ function makeRulesBtn () {
     home.appendChild(rulesBtn);
 
     rulesBtn.addEventListener('click', function () {
-        console.log("rules");
-    })
-
+        setupRules();
+    });
     return;
 }
 
@@ -309,6 +307,38 @@ function makeHomeBtn () {
     return;
 }
 
+function setupRules () {
+    const container = document.querySelector(".container");
+    const home = document.querySelector("#home");
+
+    home.innerHTML = "";
+
+    const rulesDiv = document.createElement('div');
+    rulesDiv.setAttribute("id", "rulesDiv");
+
+    const p1 = document.createElement('p');
+    p1.textContent = "Welcome, to Rock Paper Scissors (RPS) the most skill-based and most difficult game in existance.";
+    const p2 = document.createElement('p');
+    p2.textContent = "In case you don't know them yet, here are the rules:"
+    const p3 = document.createElement('p');
+    p3.textContent = "Rock beats Paper";
+    const p4 = document.createElement('p');
+    p4.textContent = "Paper beats Scissors";
+    const p5 = document.createElement('p');
+    p5.textContent = "Scissors beats Paper";
+
+    rulesDiv.appendChild(p1);
+    rulesDiv.appendChild(p2);
+    rulesDiv.appendChild(p3);
+    rulesDiv.appendChild(p4);
+    rulesDiv.appendChild(p5);
+    container.insertBefore(rulesDiv, home);
+
+    makeHomeBtn();
+
+    return;
+}
+
 function setupHome () {
     const container = document.querySelector(".container");
 
@@ -318,12 +348,14 @@ function setupHome () {
     const input = document.querySelector('#input');
     if (input != null) container.removeChild(input);
 
+    const rulesDiv = document.querySelector('#rulesDiv');
+    if (rulesDiv != null) container.removeChild(rulesDiv);
+
     const home = document.querySelector('#home');
 
     home.innerHTML = '';
 
     makeStartBtn();
-
     makeRulesBtn();
 
     return;
