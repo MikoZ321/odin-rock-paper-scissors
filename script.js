@@ -75,19 +75,23 @@ function getOutcome (playerSelection, computerSelection) {
 }
 
 function playRound (playerSelection) {
-    const resultDiv = document.querySelector('#result');
+    const resultTitle = document.querySelector('#resultTitle');
+    const resultText = document.querySelector('#resultText');
 
     let computerSelection = computerPlay();
     let result = getOutcome(playerSelection, computerSelection);
 
     if (result === 'Win') {
-        resultDiv.textContent = `You win, ${playerSelection} beats ${computerSelection}!`;
+        resultTitle.textContent = "You win";
+        resultText.textContent = `${playerSelection} beats ${computerSelection}`;
     }
     else if (result === 'Lose') {
-        resultDiv.textContent = `You lose, ${computerSelection} beats ${playerSelection}.`;
+        resultTitle.textContent = "You lose";
+        resultText.textContent = `${computerSelection} beats ${playerSelection}`;
     }
     else {
-        resultDiv.textContent = `You tie, ${computerSelection} ties with ${playerSelection}.`;
+        resultTitle.textContent = "You tie";
+        resultText.textContent = `${computerSelection} ties with ${playerSelection}`;
     }
     return result;
 }
@@ -100,8 +104,10 @@ function setup () {
         container.removeChild(output);
     }
 
+    // Hide #start
     start.classList.add("invisible");
 
+    // Start #input
     const input = document.createElement('div');
     input.setAttribute("id", "input");
 
@@ -125,7 +131,9 @@ function setup () {
     input.appendChild(scissors);
 
     container.appendChild(input);
+    // End #input
 
+    // Start #output
     const output = document.createElement('div');
     output.setAttribute("id", "output");
 
@@ -144,8 +152,17 @@ function setup () {
     scoreLeft.appendChild(scoreLeftTitle);
     output.appendChild(scoreLeft);
 
-    const result = document.createElement('p');
-    result.setAttribute("id", "result");
+    const result = document.createElement('div');
+    result.setAttribute("id", "resultDiv");
+
+    const resultTitle = document.createElement('h2');
+    resultTitle.setAttribute("id", "resultTitle");
+
+    const resultText = document.createElement('p');
+    resultText.setAttribute("id", "resultText");
+
+    result.appendChild(resultTitle);
+    result.appendChild(resultText);
     output.appendChild(result);
 
     const scoreRight = document.createElement('div');
@@ -153,7 +170,7 @@ function setup () {
 
     const scoreRightTitle = document.createElement('h2');
     scoreRightTitle.classList.add("score-title");
-    scoreRightTitle.textContent = "AI";
+    scoreRightTitle.textContent = "RPS";
 
     const scoreRightCounter = document.createElement('p');
     scoreRightCounter.classList.add("score-counter");
@@ -164,19 +181,20 @@ function setup () {
     output.appendChild(scoreRight);
 
     container.insertBefore(output, input);
+    // End #output
 }
 
 function declareWinner () {
     console.log("declaring winner");
-    const result = document.querySelector("#result");
+    const result = document.querySelector("#resultTitle");
     if (playerScore > computerScore) {
         result.textContent = "You win!";
     }
     else if (playerScore < computerScore) {
-        result.textContent = "You lose.";
+        result.textContent = "You lose";
     }
     else {
-        result.textContent = "You tie.";
+        result.textContent = "You tie";
     }
 }
 
