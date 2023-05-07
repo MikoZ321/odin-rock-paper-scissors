@@ -5,10 +5,13 @@
 
 :root {
     --background-color: #000000;
-    --background-color-2: #2D3A3A;
+    --background-color-green: #248247;
     --text-color-gold: #FFD300;
-    --text-shadow: #FFDE24;
-    --text-color-green: #248247;
+    --text-shadow-gold: #FFDE24;
+    --background-color-brown-dark: #8A3324;
+    --background-color-chestnut: #954535;
+    --container-width: 80vw;
+    --container-height: 70vh;
 }
 * {
     padding: 0;
@@ -41,19 +44,34 @@ header {
     text-align: center;
     font-family: 'Bruno Ace SC';
     color: var(--text-color-gold);
-    text-shadow: 0 0 5px var(--text-shadow);
+    text-shadow: 0 0 5px var(--text-shadow-gold);
+}
+
+.outer {
+    background: radial-gradient(
+        circle at center,
+        var(--background-color-brown-dark) 0,
+        var(--background-color-chestnut) 92%,
+        var(--background-color-brown-dark) 100%
+    );
+    width: calc(var(--container-width) + 40px);
+    height: calc(var(--container-height) + 40px);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .container {
-    width: 80vw;
-    height: 70vh;
+    width: var(--container-width);
+    height: var(--container-height);
     border-radius: 5px;
     display: flex;
     flex-direction: column;
     text-align: center;
     justify-content: center;
     align-items: center;
-    background-color: var(--background-color-2);
+    background-color: var(--background-color-green);
 }
 
 /*.rules {
@@ -78,7 +96,7 @@ header {
     width: 100%;
     max-width: 900px;
     margin-top: 100px;
-    color: var(--text-color-green);
+    color: var(--background-color-green);
 }
 
 .score {
@@ -94,7 +112,7 @@ header {
     font-size: 2rem;
     font-weight: medium;
     text-transform: uppercase;
-    border-top: 3px solid var(--text-color-green);
+    border-top: 3px solid var(--background-color-green);
     padding-top: 10px;
 }
 
