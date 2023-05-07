@@ -234,7 +234,7 @@ function makeSettingsBtn () {
     home.appendChild(settingsBtn);
 
     settingsBtn.addEventListener('click', function () {
-        console.log("settings");
+        setupSettings();
     });
     return;
 }
@@ -376,6 +376,9 @@ function setupHome () {
     const rulesDiv = document.querySelector('#rulesDiv');
     if (rulesDiv != null) container.removeChild(rulesDiv);
 
+    const settingsDiv = document.querySelector('#settingsDiv');
+    if (settingsDiv != null) container.removeChild(settingsDiv);
+
     const home = document.querySelector('#home');
 
     home.innerHTML = '';
@@ -385,6 +388,43 @@ function setupHome () {
     makeSettingsBtn();
 
     return;
+}
+
+function setupSettings () {
+    const container = document.querySelector(".container");
+    const home = document.querySelector("#home");
+
+    home.innerHTML = '';
+
+    const settingsDiv = document.createElement('div');
+    settingsDiv.setAttribute("id", "settingsDiv");
+
+    const best = document.createElement('button');
+    best.classList.add('btn');
+    best.setAttribute("id", "best");
+    best.textContent = "Best of:";
+
+    const first = document.createElement('button');
+    first.classList.add('btn');
+    first.setAttribute("id", "first");
+    first.textContent = "First to:";
+
+    const winLabel = document.createElement('p');
+    winLabel.setAttribute("id", "winLabel");
+    winLabel.textContent = `${currentWin}`;
+
+    const winSlider = document.createElement('input');
+    winSlider.setAttribute("type", "range");
+    winSlider.setAttribute("id", "winSlider");
+
+    settingsDiv.appendChild(best);
+    settingsDiv.appendChild(first);
+    settingsDiv.appendChild(winLabel);
+    settingsDiv.appendChild(winSlider);
+
+    container.insertBefore(settingsDiv, home);
+
+    makeHomeBtn();
 }
 
 setupHome();
