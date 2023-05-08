@@ -124,53 +124,57 @@ function declareWinner () {
 function startGame (e, currentMode, currentWin) {
     if (e.target.id != "start") return;
 
-    console.log(currentMode);
-    console.log(currentWin);
     setupGame();
 
     const btns = document.querySelectorAll('.btn');
     
     btns.forEach(btn => btn.addEventListener('click', function (e) {
-        const scoreLeft = document.querySelector(".left");
-        const scoreLeftCounter = scoreLeft.querySelector(".score-counter");
-        const scoreRight = document.querySelector(".right")
-        const scoreRightCounter = scoreRight.querySelector(".score-counter");
+        logScore(e, currentMode);
 
-        let result = playRound(e.target.id);
-
-        if (result == "Win") {
-            playerScore++;
-        }
-        else if (result == "Lose") {
-            computerScore++;
-        }
-        else {
-            playerScore++;
-            computerScore++;
-        }
-        scoreLeftCounter.textContent = `${playerScore}`;
-        scoreRightCounter.textContent = `${computerScore}`;
-
-        roundCount++;
-
-        if (roundCount == 5) {
-            declareWinner();
-            const input = document.querySelector("#input");
-            input.innerHTML = '';
-
-            const home = document.querySelector("#home");
-
-            makeStartBtn();
-            start.textContent = "Restart";
-
-            makeHomeBtn();
-
-            computerScore = 0;
-            playerScore = 0;
-            roundCount = 0;
-        }
+        endGame(currentMode, currentWin);
     }));
     return;
+}
+
+function logScore(e, currentMode) {
+    const scoreLeft = document.querySelector(".left");
+    const scoreLeftCounter = scoreLeft.querySelector(".score-counter");
+    const scoreRight = document.querySelector(".right")
+    const scoreRightCounter = scoreRight.querySelector(".score-counter");
+
+    let result = playRound(e.target.id);
+
+    if (result == "Win") {
+        playerScore++;
+    }
+    else if (result == "Lose") {
+        computerScore++;
+    }
+    else if (currentMode == "best") {
+        playerScore++;
+        computerScore++;
+    }
+    scoreLeftCounter.textContent = `${playerScore}`;
+    scoreRightCounter.textContent = `${computerScore}`;
+
+    roundCount++;
+}
+
+function endGame(currentMode, currentWin) {
+    if (roundCount == 5) {
+        declareWinner();
+        const input = document.querySelector("#input");
+        input.innerHTML = '';
+
+        makeStartBtn();
+        start.textContent = "Restart";
+
+        makeHomeBtn();
+
+        computerScore = 0;
+        playerScore = 0;
+        roundCount = 0;
+    }
 }
 
 function makeStartBtn  () {
