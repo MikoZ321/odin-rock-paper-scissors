@@ -418,6 +418,9 @@ function setupSettings () {
     first.setAttribute("id", "first");
     first.textContent = "First to:";
 
+    const winDiv = document.createElement('div');
+    winDiv.setAttribute("id", "winDiv");
+
     const winLabel = document.createElement('p');
     winLabel.setAttribute("id", "winLabel");
     winLabel.textContent = `${currentWin}`;
@@ -425,13 +428,22 @@ function setupSettings () {
     const winSlider = document.createElement('input');
     winSlider.setAttribute("type", "range");
     winSlider.setAttribute("id", "winSlider");
+    winSlider.classList.add("slider");
+    winSlider.setAttribute("min", "1");
+    winSlider.setAttribute("max", "12");
+    winSlider.setAttribute("value", `${currentWin}`);
+
+    winDiv.appendChild(winLabel);
+    winDiv.appendChild(winSlider);
 
     settingsDiv.appendChild(best);
     settingsDiv.appendChild(first);
-    settingsDiv.appendChild(winLabel);
-    settingsDiv.appendChild(winSlider);
+    settingsDiv.appendChild(winDiv);
 
     container.insertBefore(settingsDiv, home);
+
+    if (currentMode == "best") best.classList.add("selected");
+    else if (currentMode == "first") first.classList.add("selected");
 
     best.addEventListener('click', function (e) {
         first.classList.remove("selected");
@@ -444,6 +456,12 @@ function setupSettings () {
         first.classList.add("selected");
         setMode(e.target.id);
     });
+
+    winSlider.oninput = function (e) {
+        currentWin = e.target.value;
+
+        winLabel.textContent = `${currentWin}`;
+    }
 
     makeHomeBtn();
 }
