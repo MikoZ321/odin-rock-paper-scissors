@@ -18,6 +18,9 @@
     --container-width: 80vw;
     --container-height: 70vh;
     --output-width: 900px;
+    --button-width: 300px;
+    --button-height: 80px;
+    --button-gap: 15px;
 }
 * {
     padding: 0;
@@ -95,28 +98,29 @@ header {
     justify-content: center;
     align-items: center;
     width: 400px;
-    height: 270px;
-    gap: 15px;
+    height: 300px;
+    gap: var(--button-gap);
 }
-#home .btn {
-    padding: 15px 40px;
+.btn {
+    padding: 5px 40px;
     font-size: 2.5rem;
     font-weight: 800;
     text-transform: uppercase;
     cursor: pointer;
     background-color: var(--background-color-green-dark);
-    width: 300px;
+    width: var(--button-width);
+    height: var(--button-height);
     border: none;
     color: var(--accent-color-white);
     border-radius: 10px;
 }
 
-#home .btn:hover {
+.btn:hover {
     transform: scale(1.1);
     transition-duration: 0.4s;
 }
 
-#home .btn:active {
+.btn:active {
     transform: scale(0.9);
     transition-duration: 0.4s;
 }
@@ -199,6 +203,7 @@ header {
     cursor: pointer;
     text-transform: uppercase;
     width: 170px;
+    height: auto;
     border-radius: 10px;
     background-color: var(--background-color-green-dark);
     color: var(--accent-color-white);
@@ -233,4 +238,14 @@ header {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 400px;
+    height: 300px;
+}
+
+#settingsDiv .btn {
+    margin-bottom: var(--button-gap);
+}
+
+.selected {
+    border: 4px solid var(--accent-color-white);
 }

@@ -434,10 +434,14 @@ function setupSettings () {
     container.insertBefore(settingsDiv, home);
 
     best.addEventListener('click', function (e) {
+        first.classList.remove("selected");
+        best.classList.add("selected");
         setMode(e.target.id);
     });
 
     first.addEventListener('click', function (e) {
+        best.classList.remove("selected");
+        first.classList.add("selected");
         setMode(e.target.id);
     });
 
