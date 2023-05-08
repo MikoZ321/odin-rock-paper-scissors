@@ -131,7 +131,9 @@ function startGame (e, currentMode, currentWin) {
     btns.forEach(btn => btn.addEventListener('click', function (e) {
         logScore(e, currentMode);
 
-        endGame(currentMode, currentWin);
+        if ((currentMode == "best" && roundCount == currentWin) || (currentMode == "first" && (playerScore == currentWin || computerScore == currentWin))) {
+            endGame();
+        }
     }));
     return;
 }
@@ -160,21 +162,24 @@ function logScore(e, currentMode) {
     roundCount++;
 }
 
-function endGame(currentMode, currentWin) {
-    if (roundCount == 5) {
-        declareWinner();
-        const input = document.querySelector("#input");
-        input.innerHTML = '';
+function endGame () {
+    declareWinner();
+    const input = document.querySelector("#input");
+    input.innerHTML = '';
 
-        makeStartBtn();
-        start.textContent = "Restart";
+    makeStartBtn();
+    start.textContent = "Restart";
 
-        makeHomeBtn();
+    makeHomeBtn();
 
-        computerScore = 0;
-        playerScore = 0;
-        roundCount = 0;
-    }
+    computerScore = 0;
+    playerScore = 0;
+    roundCount = 0;
+}
+
+function setMode (newMode) {
+    currentMode = newMode;
+    console.log(currentMode);
 }
 
 function makeStartBtn  () {
@@ -427,6 +432,14 @@ function setupSettings () {
     settingsDiv.appendChild(winSlider);
 
     container.insertBefore(settingsDiv, home);
+
+    best.addEventListener('click', function (e) {
+        setMode(e.target.id);
+    });
+
+    first.addEventListener('click', function (e) {
+        setMode(e.target.id);
+    });
 
     makeHomeBtn();
 }
